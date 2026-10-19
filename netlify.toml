@@ -1,0 +1,20 @@
+[build]
+  publish = "."
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# The news file must always be fresh and readable by the mod and other sites.
+[[headers]]
+  for = "/quickclient/news.json"
+  [headers.values]
+    Cache-Control = "public, max-age=60"
+    Access-Control-Allow-Origin = "*"
+    Content-Type = "application/json; charset=utf-8"
+
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Referrer-Policy = "no-referrer"

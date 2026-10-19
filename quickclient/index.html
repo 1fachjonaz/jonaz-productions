@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QuickClient - Jonaz Productions</title>
+<meta name="description" content="QuickClient: Fabric client mod with 40+ modules, world map, waypoint beams and minimap.">
+<link rel="icon" href="../assets/quickclient-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .hero { padding: 64px 0 32px; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; }
+  .hero img { width: 128px; height: 128px; image-rendering: pixelated; }
+  .hero p { color: #c9cdd1; font-size: 17px; max-width: 600px; }
+  @media (max-width: 640px) { .hero { grid-template-columns: 1fr; } .hero img { width: 88px; height: 88px; order: -1; } }
+  .dl { display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center; padding: 22px; }
+  @media (max-width: 640px) { .dl { grid-template-columns: 1fr; } }
+  .tabs { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 14px; }
+  .tabs button { font-family: var(--pixel); font-size: 12px; text-transform: uppercase; color: var(--muted); background: transparent; border: 1px solid transparent; padding: 5px 10px; border-radius: var(--radius); cursor: pointer; }
+  .tabs button.on, .tabs button:hover { color: #fff; background: var(--glass); border-color: var(--border); }
+  #news .news-item + .news-item { margin-top: 12px; }
+  ol.steps { padding-left: 20px; } ol.steps li { margin: 6px 0; }
+  code { background: rgba(0,0,0,.35); padding: 1px 6px; border-radius: 3px; font-size: 13px; }
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="../"><span class="dot"></span>JONAZ PRODUCTIONS</a>
+  <nav class="nav">
+    <a href="../">Home</a>
+    <a class="active" href="./">QuickClient</a>
+    <a href="#news">News</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+  <section class="hero">
+    <div>
+      <span class="badge">Fabric &middot; Minecraft 1.21.11</span>
+      <h1>QUICKCLIENT</h1>
+      <p>40+ built-in modules, a world map that remembers what you explored, waypoint beams from bedrock to the sky,
+        a round minimap and a HUD you can arrange however you like.</p>
+    </div>
+    <img src="../assets/quickclient-icon.png" alt="QuickClient icon">
+  </section>
+
+  <section id="download" style="padding-top:0">
+    <div class="card dl">
+      <div>
+        <h3>QuickClient v1.0.2</h3>
+        <div class="muted">For Minecraft 1.21.11 with Fabric Loader 0.18+ and Fabric API.</div>
+      </div>
+      <a class="btn primary" href="../downloads/quickclient-mc1.21.11-1.0.2.jar" download>Download .jar</a>
+    </div>
+    <ol class="steps muted">
+      <li>Install <a href="https://fabricmc.net/use/installer/" rel="noopener">Fabric</a> for Minecraft 1.21.11 and put <a href="https://modrinth.com/mod/fabric-api" rel="noopener">Fabric API</a> in your <code>mods</code> folder.</li>
+      <li>Put the QuickClient <code>.jar</code> into the same <code>mods</code> folder.</li>
+      <li>Start the game - press <code>K</code> for modules and <code>M</code> for the world map.</li>
+    </ol>
+  </section>
+
+  <section style="padding-top:0">
+    <h2>Modules</h2>
+    <div class="tabs" id="cats"></div>
+    <div class="grid2" id="mods"></div>
+  </section>
+
+  <section id="news" style="padding-top:0">
+    <h2>News</h2>
+    <div id="newsList" class="muted">Loading...</div>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  <span>&copy; <span id="year"></span> Jonaz Productions</span>
+  <span>Not affiliated with Mojang or Microsoft.</span>
+</div></footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+function esc(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+const MODS = [
+  ['Performance','FPS counter','Frames per second with colour coding.'],
+  ['Performance','Performance panel','Average, min and max FPS, frame time, memory and ping.'],
+  ['Performance','FPS and memory graph','Per-second FPS and memory history.'],
+  ['Performance','Dynamic render distance','Adjusts render distance to hold your target FPS.'],
+  ['Performance','Background FPS limit','Caps FPS while the game window is not focused.'],
+  ['Performance','Particle saver','Switches particles to Minimal while FPS is low.'],
+  ['Performance','Graphics presets','One-click Low, Balanced or High video settings.'],
+  ['Performance','Lag spike monitor','Counts frames that took too long in the last minute.'],
+  ['HUD','Armor HUD','Worn armor with durability bars.'],
+  ['HUD','Potion effects','Active effects with level and remaining time.'],
+  ['HUD','Food & saturation','Hunger and the hidden saturation value.'],
+  ['HUD','Held item','Name, stack size, total in inventory and durability.'],
+  ['HUD','Clock','Real-world time, optionally with seconds and date.'],
+  ['Navigation','World map','Press M: explored terrain is saved per world and dimension.'],
+  ['Navigation','Minimap','Round, rotating minimap with waypoint markers.'],
+  ['Navigation','Waypoint beams','Coloured light beams from bedrock to the sky.'],
+  ['Navigation','Compass strip','Heading bar with N/E/S/W and waypoint markers.'],
+  ['Navigation','Breadcrumb trail','Records your path and draws it on the world map.'],
+  ['Visual','Zoom','Hold a key to zoom, scroll to adjust.'],
+  ['Visual','Custom crosshair','Cross, dot, circle or T crosshair in your colour.'],
+  ['Utility','Keystrokes','Movement keys, mouse buttons and CPS.'],
+  ['Utility','Pickup feed','Shows items you gain or lose as +/- lines.'],
+  ['Utility','Supply watch','Food, arrows, torches and blocks - red when low.'],
+  ['Utility','Tool guard','Warning when a tool or armor piece is nearly broken.'],
+  ['Utility','Night timer','Countdown to nightfall and sunrise with a sleep hint.'],
+  ['Utility','Server info','Server address and player count.'],
+];
+const ICONS = {"FPS counter": "fps", "Performance panel": "fps", "FPS and memory graph": "fps", "Dynamic render distance": "settings", "Background FPS limit": "settings", "Particle saver": "settings", "Graphics presets": "settings", "Lag spike monitor": "fps", "Armor HUD": "armor", "Potion effects": "plus", "Food & saturation": "durability", "Held item": "durability", "Clock": "time", "World map": "minimap", "Minimap": "minimap", "Waypoint beams": "waypoints", "Compass strip": "tracker", "Breadcrumb trail": "waypoints", "Zoom": "zoom", "Custom crosshair": "coordinates", "Keystrokes": "keystrokes", "Pickup feed": "overview", "Supply watch": "widgets", "Tool guard": "durability", "Night timer": "time", "Server info": "ping"};
+const cats = ['All', ...new Set(MODS.map(m => m[0]))];
+let current = 'All';
+function renderMods() {
+  document.getElementById('cats').innerHTML = cats.map(c =>
+    `<button class="${c === current ? 'on' : ''}" data-c="${c}">${c}</button>`).join('');
+  document.getElementById('mods').innerHTML = MODS.filter(m => current === 'All' || m[0] === current).map(m =>
+    `<div class="card mod"><div class="icon"><img src="../assets/icons/icon_${ICONS[m[1]] || 'widgets'}.png" alt=""></div><div><h3>${esc(m[1])}</h3><p>${esc(m[2])}</p></div></div>`).join('');
+  document.querySelectorAll('#cats button').forEach(b => b.onclick = () => { current = b.dataset.c; renderMods(); });
+}
+renderMods();
+
+fetch('news.json', {cache: 'no-cache'})
+  .then(r => r.json())
+  .then(data => {
+    const list = data.entries || [];
+    const box = document.getElementById('newsList');
+    if (!list.length) { box.textContent = 'No news yet.'; return; }
+    box.className = '';
+    box.innerHTML = list.map((e, i) => `<article class="card news-item">
+      <div class="news-head"><span class="ver">${e.version ? 'v' + esc(e.version) : ''}</span>
+        ${i === 0 ? '<span class="chip new">New</span>' : ''}<span class="date">${esc(e.date || '')}</span></div>
+      <h3>${esc(e.title)}</h3>
+      <ul>${(e.lines || []).map(l => `<li>${esc(l)}</li>`).join('')}</ul></article>`).join('');
+  })
+  .catch(() => { document.getElementById('newsList').textContent = 'News could not be loaded.'; });
+</script>
+</body>
+</html>

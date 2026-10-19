@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jonaz Productions</title>
+<meta name="description" content="Jonaz Productions - Minecraft mods and projects, home of QuickClient.">
+<link rel="icon" href="assets/quickclient-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .hero { padding: 88px 0 56px; }
+  .hero p { font-size: 18px; max-width: 560px; color: #c9cdd1; }
+  .hero .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
+  .project { display: grid; grid-template-columns: 72px 1fr auto; gap: 18px; align-items: center; padding: 20px; }
+  .project img { width: 72px; height: 72px; image-rendering: pixelated; border-radius: var(--radius); background: rgba(0,0,0,.3); }
+  .project .meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+  @media (max-width: 640px) { .project { grid-template-columns: 56px 1fr; } .project img { width: 56px; height: 56px; } .project .go { grid-column: 1 / -1; } }
+  .latest .news-item { margin: 0; }
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="./"><span class="dot"></span>JONAZ PRODUCTIONS</a>
+  <nav class="nav">
+    <a class="active" href="./">Home</a>
+    <a href="quickclient/">QuickClient</a>
+    <a href="quickclient/#news">News</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+  <section class="hero">
+    <span class="badge">Minecraft mods &amp; projects</span>
+    <h1>JONAZ<br>PRODUCTIONS</h1>
+    <p>Client-side Minecraft mods that make the game clearer and smoother - built in Germany, made for players.</p>
+    <div class="actions">
+      <a class="btn primary" href="quickclient/#download">Download QuickClient</a>
+      <a class="btn" href="quickclient/#news">Latest news</a>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <h2>Projects</h2>
+    <a class="card project" href="quickclient/">
+      <img src="assets/quickclient-icon.png" alt="">
+      <div>
+        <h3>QuickClient</h3>
+        <div class="muted">A Fabric client mod with 40+ built-in modules, a world map, waypoint beams, a minimap and a customizable HUD.</div>
+        <div class="meta"><span class="chip new">v1.0.2</span><span class="chip">Fabric</span><span class="chip">Minecraft 1.21.11</span></div>
+      </div>
+      <span class="btn go">Open</span>
+    </a>
+  </section>
+
+  <section class="latest" style="padding-top:0">
+    <h2>Latest news</h2>
+    <div id="latest" class="muted">Loading...</div>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  <span>&copy; <span id="year"></span> Jonaz Productions</span>
+  <span>Not affiliated with Mojang or Microsoft.</span>
+</div></footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+function esc(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+fetch('quickclient/news.json', {cache: 'no-cache'})
+  .then(r => r.json())
+  .then(data => {
+    const e = (data.entries || [])[0];
+    const box = document.getElementById('latest');
+    if (!e) { box.textContent = 'No news yet.'; return; }
+    box.className = '';
+    box.innerHTML = `<div class="card news-item">
+      <div class="news-head"><span class="ver">${e.version ? 'v' + esc(e.version) : ''}</span>
+      <span class="date">${esc(e.date || '')}</span></div>
+      <h3>${esc(e.title)}</h3>
+      <ul>${(e.lines || []).slice(0, 4).map(l => `<li>${esc(l)}</li>`).join('')}</ul>
+      <p style="margin:12px 0 0"><a href="quickclient/#news">All news &rarr;</a></p></div>`;
+  })
+  .catch(() => { document.getElementById('latest').textContent = 'News could not be loaded.'; });
+</script>
+</body>
+</html>

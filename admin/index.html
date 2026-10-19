@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>News Editor - Jonaz Productions</title>
+<link rel="icon" href="../assets/quickclient-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  main { padding: 32px 0 64px; }
+  .layout { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+  @media (max-width: 860px) { .layout { grid-template-columns: 1fr; } }
+  .panel { padding: 18px; }
+  .panel + .panel { margin-top: 16px; }
+  .entry { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; padding: 10px 12px; }
+  .entry + .entry { margin-top: 8px; }
+  .entry .t { font-weight: 600; }
+  .entry .s { color: var(--muted); font-size: 13px; }
+  .entry .acts { display: flex; gap: 6px; }
+  .status { font-size: 13px; color: var(--muted); margin-top: 8px; min-height: 1.4em; }
+  .status.ok { color: var(--on); } .status.err { color: var(--danger); }
+  .check { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); margin-bottom: 14px; }
+  .check input { width: auto; }
+  details summary { cursor: pointer; font-family: var(--pixel); font-size: 12px; text-transform: uppercase; color: var(--muted); }
+  .help { font-size: 13px; color: var(--muted); }
+  .help code { background: rgba(0,0,0,.35); padding: 1px 5px; border-radius: 3px; }
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="../"><span class="dot"></span>JONAZ PRODUCTIONS</a>
+  <nav class="nav">
+    <a href="../">Home</a>
+    <a href="../quickclient/">QuickClient</a>
+    <a class="active" href="./">News editor</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+  <h2>QuickClient news editor</h2>
+  <p class="muted" style="margin-top:-6px">What you publish here appears on this website and on the News page inside QuickClient.</p>
+
+  <div class="layout">
+    <div>
+      <div class="glass panel" id="connectPanel">
+        <h3>GitHub connection</h3>
+        <p class="help">The news file lives in the GitHub repository of this website. Netlify publishes every change
+          automatically. Your token is only sent to <code>api.github.com</code>.</p>
+        <div class="row">
+          <div class="field"><label for="repo">Repository (owner/name)</label><input id="repo" placeholder="YourName/jonaz-productions"></div>
+          <div class="field"><label for="branch">Branch</label><input id="branch" value="main"></div>
+        </div>
+        <div class="field"><label for="path">News file</label><input id="path" value="quickclient/news.json"></div>
+        <div class="field"><label for="token">GitHub token</label><input id="token" type="password" placeholder="github_pat_..." autocomplete="off"></div>
+        <label class="check"><input type="checkbox" id="remember"> Remember on this device</label>
+        <button class="btn primary" id="connect">Connect</button>
+        <div class="status" id="connStatus"></div>
+        <details style="margin-top:12px"><summary>How do I get a token?</summary>
+          <p class="help">GitHub &rarr; Settings &rarr; Developer settings &rarr; Personal access tokens &rarr;
+            Fine-grained tokens &rarr; Generate new token. Repository access: only this website's repository.
+            Permission: <code>Contents: Read and write</code>.</p>
+        </details>
+      </div>
+
+      <div class="glass panel">
+        <h3 id="formTitle">New entry</h3>
+        <div class="row">
+          <div class="field"><label for="version">Version</label><input id="version" placeholder="1.0.3"></div>
+          <div class="field"><label for="date">Date</label><input id="date" type="date"></div>
+        </div>
+        <div class="field"><label for="title">Title</label><input id="title" maxlength="80" placeholder="Big update"></div>
+        <div class="field"><label for="lines">Points (one per line)</label>
+          <textarea id="lines" placeholder="New module: Light level&#10;Minimap is faster"></textarea></div>
+        <div class="row" style="gap:8px">
+          <button class="btn primary" id="publish" disabled>Publish</button>
+          <button class="btn" id="reset">New entry</button>
+        </div>
+        <div class="status" id="pubStatus"></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="glass panel">
+        <h3>Preview</h3>
+        <div id="preview"></div>
+      </div>
+      <div class="glass panel">
+        <h3>Published entries</h3>
+        <div id="entries" class="muted">Connect to load the current news.</div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const $ = id => document.getElementById(id);
+const KEY = 'jp-news-editor';
+const MAX_ENTRIES = 30;
+let state = { entries: [], sha: null, editing: null, connected: false };
+
+function esc(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function toast(msg, err) {
+  const t = $('toast'); t.textContent = msg; t.className = 'toast' + (err ? ' err' : ''); t.style.display = 'block';
+  clearTimeout(toast.t); toast.t = setTimeout(() => t.style.display = 'none', 4000);
+}
+function status(id, msg, kind) { const s = $(id); s.textContent = msg; s.className = 'status' + (kind ? ' ' + kind : ''); }
+function today() { return new Date().toISOString().slice(0, 10); }
+
+// UTF-8 safe base64
+function toB64(str) { const bytes = new TextEncoder().encode(str); let bin = ''; bytes.forEach(b => bin += String.fromCharCode(b)); return btoa(bin); }
+function fromB64(b64) { const bin = atob(b64.replace(/\n/g, '')); const bytes = Uint8Array.from(bin, c => c.charCodeAt(0)); return new TextDecoder().decode(bytes); }
+
+function loadSaved() {
+  try {
+    const s = JSON.parse(localStorage.getItem(KEY) || '{}');
+    if (s.repo) $('repo').value = s.repo;
+    if (s.branch) $('branch').value = s.branch;
+    if (s.path) $('path').value = s.path;
+    if (s.token) { $('token').value = s.token; $('remember').checked = true; }
+  } catch (e) { /* storage not available */ }
+}
+function save() {
+  try {
+    const data = { repo: $('repo').value.trim(), branch: $('branch').value.trim(), path: $('path').value.trim() };
+    if ($('remember').checked) data.token = $('token').value.trim();
+    localStorage.setItem(KEY, JSON.stringify(data));
+  } catch (e) { /* ignore */ }
+}
+
+function api() {
+  const repo = $('repo').value.trim(), path = $('path').value.trim();
+  if (!/^[\w.-]+\/[\w.-]+$/.test(repo)) throw new Error('Repository must look like owner/name.');
+  return `https://api.github.com/repos/${repo}/contents/${path.split('/').map(encodeURIComponent).join('/')}`;
+}
+function headers() {
+  return { 'Authorization': 'Bearer ' + $('token').value.trim(), 'Accept': 'application/vnd.github+json' };
+}
+
+async function load() {
+  const res = await fetch(api() + '?ref=' + encodeURIComponent($('branch').value.trim() || 'main'), { headers: headers(), cache: 'no-store' });
+  if (res.status === 404) { state.entries = []; state.sha = null; return; }
+  if (res.status === 401) throw new Error('Token rejected (401). Check the token and its permissions.');
+  if (!res.ok) throw new Error('GitHub answered ' + res.status + '.');
+  const data = await res.json();
+  const content = JSON.parse(fromB64(data.content));
+  state.entries = Array.isArray(content.entries) ? content.entries : [];
+  state.sha = data.sha;
+}
+
+async function store(message) {
+  const body = {
+    message, branch: $('branch').value.trim() || 'main',
+    content: toB64(JSON.stringify({ entries: state.entries.slice(0, MAX_ENTRIES) }, null, 2) + '\n')
+  };
+  if (state.sha) body.sha = state.sha;
+  const res = await fetch(api(), { method: 'PUT', headers: { ...headers(), 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  if (res.status === 409 || res.status === 422) throw new Error('The file changed meanwhile. Press Connect to reload, then try again.');
+  if (!res.ok) throw new Error('Saving failed (' + res.status + ').');
+  const data = await res.json();
+  state.sha = data.content && data.content.sha;
+}
+
+function formEntry() {
+  return {
+    id: state.editing || ('web-' + Date.now()),
+    version: $('version').value.trim().replace(/^v/i, ''),
+    date: $('date').value || today(),
+    title: $('title').value.trim().slice(0, 80),
+    lines: $('lines').value.split('\n').map(l => l.trim().replace(/^[-*•]\s*/, '')).filter(Boolean).slice(0, 20)
+  };
+}
+
+function renderPreview() {
+  const e = formEntry();
+  $('preview').innerHTML = `<div class="card news-item">
+    <div class="news-head"><span class="ver">${e.version ? 'v' + esc(e.version) : ''}</span><span class="chip new">New</span>
+    <span class="date">${esc(e.date)}</span></div>
+    <h3>${esc(e.title || 'Title')}</h3>
+    <ul>${(e.lines.length ? e.lines : ['Your first point']).map(l => `<li>${esc(l)}</li>`).join('')}</ul></div>`;
+  $('publish').disabled = !state.connected || !e.title;
+  $('publish').textContent = state.editing ? 'Save changes' : 'Publish';
+  $('formTitle').textContent = state.editing ? 'Edit entry' : 'New entry';
+}
+
+function renderEntries() {
+  const box = $('entries');
+  if (!state.connected) return;
+  if (!state.entries.length) { box.className = 'muted'; box.textContent = 'No entries yet - publish the first one.'; return; }
+  box.className = '';
+  box.innerHTML = state.entries.map((e, i) => `<div class="card entry">
+    <div><div class="t">${e.version ? 'v' + esc(e.version) + ' - ' : ''}${esc(e.title)}</div>
+    <div class="s">${esc(e.date || '')} &middot; ${(e.lines || []).length} points</div></div>
+    <div class="acts"><button class="btn small" data-edit="${i}">Edit</button>
+    <button class="btn small danger" data-del="${i}">Delete</button></div></div>`).join('');
+  box.querySelectorAll('[data-edit]').forEach(b => b.onclick = () => edit(+b.dataset.edit));
+  box.querySelectorAll('[data-del]').forEach(b => b.onclick = () => remove(+b.dataset.del, b));
+}
+
+function resetForm() {
+  state.editing = null;
+  $('version').value = ''; $('title').value = ''; $('lines').value = ''; $('date').value = today();
+  renderPreview();
+}
+
+function edit(i) {
+  const e = state.entries[i];
+  if (!e.id) e.id = 'web-' + Date.now();
+  state.editing = e.id;
+  $('version').value = e.version || ''; $('date').value = e.date || today(); $('title').value = e.title || '';
+  $('lines').value = (e.lines || []).join('\n');
+  renderPreview();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+async function remove(i, button) {
+  if (button.dataset.armed !== '1') {
+    button.dataset.armed = '1'; button.textContent = 'Sure?';
+    setTimeout(() => { button.dataset.armed = ''; button.textContent = 'Delete'; }, 3000);
+    return;
+  }
+  const removed = state.entries.splice(i, 1)[0];
+  try { await store('Delete news: ' + (removed.title || '')); toast('Entry deleted.'); }
+  catch (err) { state.entries.splice(i, 0, removed); toast(err.message, true); }
+  renderEntries();
+}
+
+$('connect').onclick = async () => {
+  status('connStatus', 'Connecting...');
+  try {
+    await load();
+    state.connected = true; save();
+    status('connStatus', 'Connected - ' + state.entries.length + ' entries.', 'ok');
+    renderEntries(); renderPreview();
+  } catch (err) { state.connected = false; status('connStatus', err.message, 'err'); renderPreview(); }
+};
+
+$('publish').onclick = async () => {
+  const e = formEntry();
+  if (!e.title) return;
+  $('publish').disabled = true;
+  status('pubStatus', 'Publishing...');
+  const before = state.entries.slice();
+  const idx = state.entries.findIndex(x => x.id === e.id);
+  if (idx >= 0) state.entries[idx] = e; else state.entries.unshift(e);
+  try {
+    await store((idx >= 0 ? 'Update' : 'Add') + ' news: ' + e.title);
+    status('pubStatus', 'Published. The website updates in about a minute, QuickClient within 10 minutes.', 'ok');
+    toast('Published!');
+    resetForm(); renderEntries();
+  } catch (err) {
+    state.entries = before;
+    status('pubStatus', err.message, 'err');
+  }
+  renderPreview();
+};
+
+$('reset').onclick = resetForm;
+['version', 'date', 'title', 'lines'].forEach(id => $(id).addEventListener('input', renderPreview));
+loadSaved();
+$('date').value = today();
+renderPreview();
+</script>
+</body>
+</html>
