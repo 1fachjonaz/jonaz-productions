@@ -1,21 +1,6 @@
 {
   "entries": [
     {
-      "version": "1.0.2",
-      "date": "2026-10-19",
-      "title": "New menu and new modules",
-      "lines": [
-        "New module menu: Mods, Profiles and Waypoints as cards with search, categories and favourites.",
-        "Glass look for every QuickClient menu.",
-        "Round, smaller minimap; no more minimap lag.",
-        "Performance: dynamic render distance, background FPS limit, particle saver, presets, lag spikes, FPS graph.",
-        "New modules: compass strip, pickup feed, supply watch, tool guard, night timer, clock, potion effects, crosshair and more.",
-        "Waypoints: beams from bedrock to the sky, types, favourites, temporary waypoints, quick key B.",
-        "Keybind manager, HUD presets, notifications and an 11-step tutorial.",
-        "Old info lines (dimension, time, day, facing, biome) and the Notes page were removed."
-      ]
-    },
-    {
       "version": "1.0.1",
       "date": "2026-10-19",
       "title": "World map and beams",
