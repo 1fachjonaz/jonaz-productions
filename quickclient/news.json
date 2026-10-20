@@ -1,6 +1,17 @@
 {
   "entries": [
     {
+      "id": "game-1792503845908",
+      "version": "1.0.0",
+      "date": "2026-10-20",
+      "title": "QuickClient is Now on CurseForge",
+      "lines": [
+        "QuickClient is now available on CurseForge!",
+        "Download the mod and discover its features",
+        "More updates and improvements are coming soon"
+      ]
+    },
+    {
       "version": "1.0.1",
       "date": "2026-10-19",
       "title": "World map and beams",
