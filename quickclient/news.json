@@ -1,16 +1,6 @@
 {
   "entries": [
     {
-      "version": "1.0.1",
-      "date": "2026-10-19",
-      "title": "World map and beams",
-      "lines": [
-        "World map on M with saved exploration per world.",
-        "Waypoint light beams in the world.",
-        "New armor HUD, mouse-wheel zoom and the performance panel."
-      ]
-    },
-    {
       "version": "1.0.0",
       "date": "",
       "title": "First release",
