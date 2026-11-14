@@ -1,0 +1,39 @@
+{
+  "slug": "quickclient",
+  "name": "QuickClient",
+  "category": "Minecraft",
+  "theme": "default",
+  "featured": false,
+  "order": 3,
+  "status": { "stage": "released", "label": "Released · succeeded by MLBClient" },
+  "tagline": "The Fabric client mod that started it all.",
+  "summary": "A Fabric client mod with 40+ built-in modules, a world map, waypoint beams, a minimap and a customizable HUD. MLBClient is its successor.",
+  "description": "QuickClient is a client-side Fabric mod for Minecraft with over 40 built-in modules, a world map that remembers what you explored, waypoint beams from bedrock to the sky, a round minimap and a HUD you can arrange however you like. Its modules live on in MLBClient, and the MLBClient Launcher can install QuickClient as a second client.",
+  "tags": ["Fabric mod", "Minecraft Java", "Client-side"],
+  "logo": "/assets/quickclient-icon.png",
+  "cover": "",
+  "coverAlt": "",
+  "links": [
+    { "label": "Download on CurseForge", "url": "https://www.curseforge.com/minecraft/mc-mods/quickclient", "kind": "download" }
+  ],
+  "seo": {
+    "title": "QuickClient – Fabric client mod",
+    "description": "QuickClient: a Fabric client mod for Minecraft with 40+ modules, world map, waypoint beams and minimap. Download on CurseForge."
+  },
+  "hero": { "eyebrow": "Fabric client mod" },
+  "sections": [
+    {
+      "type": "features",
+      "id": "features",
+      "title": "Highlights",
+      "layout": "compact",
+      "items": [
+        { "icon": "grid", "title": "40+ modules", "text": "Performance, HUD, navigation, visual and utility modules. Every module is off until you turn it on." },
+        { "icon": "map", "title": "World map & minimap", "text": "Explored terrain saved per world and dimension, plus a round, rotating minimap." },
+        { "icon": "pin", "title": "Waypoints", "text": "Coloured beams from bedrock to the sky, a compass strip and a breadcrumb trail." },
+        { "icon": "sliders", "title": "Your HUD", "text": "Arrange every widget with the HUD editor." }
+      ]
+    },
+    { "type": "feed", "id": "in-game-news", "title": "In-game news", "intro": "These entries are shown on the News page inside QuickClient and MLBClient." }
+  ]
+}

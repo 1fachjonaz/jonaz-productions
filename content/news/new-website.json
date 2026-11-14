@@ -1,0 +1,13 @@
+{
+  "slug": "new-website",
+  "title": "A new home for Jonaz Productions",
+  "date": "2026-11-14",
+  "category": "Company news",
+  "project": "",
+  "cover": "",
+  "coverAlt": "",
+  "excerpt": "The Jonaz Productions website has been rebuilt as the central place for all projects, releases and announcements.",
+  "published": true,
+  "pinned": false,
+  "body": "The Jonaz Productions website has been rebuilt from the ground up. It is now the central place for every project, release and announcement.\n\n- **Projects**: MLBClient, Operation Iron Veil and QuickClient each have their own page.\n- **News**: development updates, release notes and announcements in one place.\n- **Contact**: a contact form and links to the community.\n\nThe in-game news of QuickClient and MLBClient keeps working exactly as before."
+}

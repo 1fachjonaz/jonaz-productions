@@ -1,0 +1,5 @@
+dist/
+downloads/
+tests/
+.env
+*.zip

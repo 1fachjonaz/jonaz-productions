@@ -1,0 +1,329 @@
+{
+  "slug": "mlbclient",
+  "name": "MLBClient",
+  "category": "Minecraft",
+  "theme": "mlbclient",
+  "featured": true,
+  "order": 1,
+  "status": {
+    "stage": "beta",
+    "label": "Beta 1 · Launch 15 Nov 2026"
+  },
+  "tagline": "The Big Comeback.",
+  "summary": "A standalone Minecraft launcher with its own client: one-click installs, profiles, Modrinth mods, emotes, cosmetics and a free daily-credit shop.",
+  "description": "MLBClient is a standalone launcher for Minecraft Java Edition by Jonaz Productions. It installs Minecraft, Fabric, Java and the MLBClient client for you, keeps every profile separate and verifies every download. In game, MLBClient adds an emote wheel, cosmetics that other MLBClient players can see, and the full module set of its predecessor QuickClient.",
+  "tags": [
+    "Launcher",
+    "Minecraft Java",
+    "Fabric",
+    "Windows",
+    "Linux"
+  ],
+  "logo": "/assets/img/mlbclient/logo.svg",
+  "cover": "/assets/img/mlbclient/launcher-home-ui.webp",
+  "coverAlt": "MLBClient Launcher home screen with the Play button and a player skin",
+  "links": [
+    {
+      "label": "Join the Discord",
+      "url": "https://discord.gg/UrWXmaFQCE",
+      "kind": "discord"
+    },
+    {
+      "label": "MLBClient website",
+      "url": "https://mlbclient.vercel.app/",
+      "kind": "website"
+    }
+  ],
+  "seo": {
+    "title": "MLBClient – Minecraft Launcher (Beta)",
+    "description": "MLBClient is a standalone Minecraft launcher by Jonaz Productions: one-click installs, profiles, Modrinth mods, modpack import, emotes and cosmetics. Beta 1 launches on 15 November 2026."
+  },
+  "hero": {
+    "eyebrow": "Minecraft Launcher · Beta",
+    "headline": "Your Minecraft, one Play away.",
+    "trailer": "https://youtu.be/HVJCQes5Kx4"
+  },
+  "sections": [
+    {
+      "type": "release",
+      "id": "download",
+      "eyebrow": "Release",
+      "title": "MLBClient Launcher Beta 1",
+      "version": "0.2.0-beta",
+      "clientVersion": "MLBClient 0.1.0-beta",
+      "status": "Public beta",
+      "availableFrom": "2026-11-15T16:00:00+01:00",
+      "availableText": "Beta 1 launches on Sunday, 15 November 2026 at 16:00 CET.",
+      "requirements": "Windows 10/11 (x64) or Linux. A Minecraft Java Edition account (Microsoft login).",
+      "downloads": [
+        {
+          "label": "Windows installer",
+          "platform": "Windows x64",
+          "file": ".exe",
+          "url": ""
+        },
+        {
+          "label": "AppImage",
+          "platform": "Linux x86_64",
+          "file": ".AppImage",
+          "url": ""
+        },
+        {
+          "label": "Debian package",
+          "platform": "Linux x86_64",
+          "file": ".deb",
+          "url": ""
+        }
+      ],
+      "notes": "The beta is not code-signed yet, so Windows SmartScreen may show a warning (More info › Run anyway)."
+    },
+    {
+      "type": "features",
+      "id": "features",
+      "eyebrow": "Launcher",
+      "title": "Everything in one launcher.",
+      "intro": "Features that are in Beta 1 today.",
+      "items": [
+        {
+          "icon": "play",
+          "title": "Install & play in one click",
+          "text": "The launcher sets up Minecraft, Fabric, Fabric API, Java and the matching MLBClient build. Every file is checked by checksum, and damaged files are found before the game starts.",
+          "image": "/assets/img/mlbclient/launcher-home-ui.webp"
+        },
+        {
+          "icon": "layers",
+          "title": "Minecraft versions",
+          "text": "MLBClient for Minecraft 26.2 and 26.3, QuickClient for 1.21.11, 26.1.2, 26.2 and 26.3. Install, update, repair or remove each one.",
+          "image": "/assets/img/mlbclient/launcher-versions.webp"
+        },
+        {
+          "icon": "grid",
+          "title": "Profiles",
+          "text": "Every installation is a profile with its own name, colour, client, version and folder for mods, configs and worlds."
+        },
+        {
+          "icon": "puzzle",
+          "title": "Mods from Modrinth",
+          "text": "Search Fabric mods by category and add them to a profile. Import Modrinth .mrpack files and CurseForge Fabric modpacks.",
+          "image": "/assets/img/mlbclient/launcher-mods.webp"
+        },
+        {
+          "icon": "sparkle",
+          "title": "Cosmetics",
+          "text": "A locker with every cosmetic you own. What you equip in the launcher is what other MLBClient players see in game.",
+          "image": "/assets/img/mlbclient/launcher-cosmetics-ui.webp"
+        },
+        {
+          "icon": "bag",
+          "title": "Shop & daily rewards",
+          "text": "Collect credits every day: 50, plus 10 for every day in a row up to 100, and 100 welcome credits. Unlock emotes and cosmetics with them. No real money.",
+          "image": "/assets/img/mlbclient/launcher-shop.webp"
+        },
+        {
+          "icon": "user",
+          "title": "Skins & accounts",
+          "text": "Log in with Microsoft through the official device-code flow, use several accounts, and upload or reset your skin.",
+          "image": "/assets/img/mlbclient/launcher-skins.webp"
+        },
+        {
+          "icon": "sliders",
+          "title": "Settings",
+          "text": "Memory, recommended or own Java, window size, game folder, English or German. Sensible defaults for beginners."
+        },
+        {
+          "icon": "bell",
+          "title": "Update notice",
+          "text": "The launcher shows a banner with a download button when a newer launcher version is published."
+        }
+      ]
+    },
+    {
+      "type": "features",
+      "id": "in-game",
+      "eyebrow": "In game",
+      "title": "The client inside.",
+      "intro": "MLBClient 0.1.0-beta is the successor of QuickClient and is installed by the launcher automatically.",
+      "layout": "compact",
+      "items": [
+        {
+          "icon": "smile",
+          "title": "Emote wheel",
+          "text": "Hold G to pick an emote. Emotes are shared with other MLBClient players near you, including music emotes played with note blocks."
+        },
+        {
+          "icon": "sparkle",
+          "title": "Shared cosmetics",
+          "text": "Capes, hats, wings, auras and more, visible to other MLBClient players. New cosmetics can arrive without a mod update."
+        },
+        {
+          "icon": "grid",
+          "title": "45 modules",
+          "text": "Everything from QuickClient 1.0.2: HUD editor, minimap, world map, waypoints, keystrokes, zoom and more, in a new module menu (K)."
+        },
+        {
+          "icon": "tag",
+          "title": "Client icons",
+          "text": "MLBClient players get a small purple M at their name tag, QuickClient players a green Q. Can be switched off."
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "id": "trailer",
+      "eyebrow": "Media",
+      "title": "Official trailer",
+      "youtube": "https://youtu.be/HVJCQes5Kx4",
+      "poster": "/assets/img/mlbclient/poster.webp"
+    },
+    {
+      "type": "gallery",
+      "id": "screenshots",
+      "title": "Screenshots",
+      "intro": "MLBClient Launcher Beta 1, captured from the official trailer.",
+      "items": [
+        {
+          "src": "/assets/img/mlbclient/launcher-home.webp",
+          "alt": "Launcher home screen",
+          "caption": "Home"
+        },
+        {
+          "src": "/assets/img/mlbclient/launcher-mods.webp",
+          "alt": "Mods page with Modrinth search",
+          "caption": "Mods"
+        },
+        {
+          "src": "/assets/img/mlbclient/launcher-cosmetics.webp",
+          "alt": "Cosmetics locker",
+          "caption": "Cosmetics"
+        },
+        {
+          "src": "/assets/img/mlbclient/launcher-skins.webp",
+          "alt": "Skins page",
+          "caption": "Skins"
+        },
+        {
+          "src": "/assets/img/mlbclient/launcher-shop.webp",
+          "alt": "Shop with daily credits",
+          "caption": "Shop"
+        },
+        {
+          "src": "/assets/img/mlbclient/launcher-versions.webp",
+          "alt": "Versions page with 26.2 and 26.3",
+          "caption": "Versions"
+        },
+        {
+          "src": "/assets/img/mlbclient/launch-collection-emotes.webp",
+          "alt": "The four Launch Collection emotes in game",
+          "caption": "Launch Collection emotes (in game)"
+        }
+      ]
+    },
+    {
+      "type": "changelog",
+      "id": "changelog",
+      "eyebrow": "Release information",
+      "title": "Changelog & release history",
+      "entries": [
+        {
+          "version": "Launcher 0.2.0-beta",
+          "title": "MLBClient Launcher Beta 1",
+          "date": "2026-11-15",
+          "items": [
+            "Profiles: every installation is a profile with its own folder for mods, configs and worlds",
+            "Modpack import for Modrinth .mrpack and CurseForge Fabric modpacks",
+            "QuickClient in the Versions tab next to MLBClient (MLBClient stays the default)",
+            "Mods page with Modrinth search, categories and per-profile installs",
+            "Shop with daily credits, cosmetics locker and skin page",
+            "English and German interface"
+          ]
+        },
+        {
+          "version": "MLBClient 0.1.0-beta",
+          "title": "From QuickClient to MLBClient",
+          "date": "2026-11-15",
+          "items": [
+            "New name and mod id; QuickClient settings, waypoints, notes and maps are taken over on first start",
+            "New look: glass panels, new main menu and module menu",
+            "Emote wheel with shared emotes, music emotes and the Sakura collection",
+            "Launch Collection: The Launch, MLB Hype, The Comeback and New Era, free for one week from the beta launch",
+            "Shared cosmetics, including the Autumn collection for free"
+          ]
+        },
+        {
+          "version": "QuickClient 1.0.1",
+          "title": "The predecessor",
+          "date": "",
+          "items": [
+            "QuickClient, the Fabric client mod that MLBClient grew out of, is available on CurseForge"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "upcoming",
+      "id": "upcoming",
+      "eyebrow": "Upcoming",
+      "title": "Beta 2 is in development.",
+      "intro": "Planned for 2027. Nothing below is released yet, and details can change.",
+      "items": [
+        {
+          "title": "A new launcher",
+          "text": "A completely redesigned launcher on the same technical base."
+        },
+        {
+          "title": "More Minecraft versions",
+          "text": "More Minecraft versions for MLBClient."
+        },
+        {
+          "title": "QuickClient integration",
+          "text": "QuickClient built into the new launcher."
+        },
+        {
+          "title": "macOS",
+          "text": "A macOS version of the launcher."
+        }
+      ],
+      "gallery": [
+        {
+          "src": "/assets/img/mlbclient/beta2-keyart.webp",
+          "alt": "MLBClient Beta 2 key art",
+          "caption": "Beta 2 key art"
+        },
+        {
+          "src": "/assets/img/mlbclient/beta2-launcher-home.webp",
+          "alt": "Work-in-progress Beta 2 launcher home screen",
+          "caption": "Beta 2 launcher · work in progress"
+        },
+        {
+          "src": "/assets/img/mlbclient/beta2-launcher-dock.webp",
+          "alt": "Work-in-progress Beta 2 launcher dock",
+          "caption": "Beta 2 launcher · work in progress"
+        }
+      ]
+    },
+    {
+      "type": "news",
+      "id": "news",
+      "title": "MLBClient news",
+      "limit": 3
+    },
+    {
+      "type": "cta",
+      "id": "community",
+      "title": "Be there for the beta.",
+      "text": "Updates, support and the launch itself happen in the MLBClient Discord.",
+      "links": [
+        {
+          "label": "Join the Discord",
+          "url": "https://discord.gg/UrWXmaFQCE",
+          "kind": "discord"
+        },
+        {
+          "label": "MLBClient website",
+          "url": "https://mlbclient.vercel.app/",
+          "kind": "website"
+        }
+      ]
+    }
+  ]
+}

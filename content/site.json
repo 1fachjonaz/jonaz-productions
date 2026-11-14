@@ -1,0 +1,39 @@
+{
+  "name": "Jonaz Productions",
+  "url": "https://stellar-cucurucho-cc396d.netlify.app",
+  "description": "Jonaz Productions is an independent studio building software, Minecraft projects, launchers and games.",
+  "hero": {
+    "eyebrow": "Independent software & game studio",
+    "headline": "Building Digital Experiences.",
+    "text": "Jonaz Productions creates software, gaming experiences, and digital projects with a focus on quality, creativity, and innovation."
+  },
+  "about": {
+    "intro": "Jonaz Productions is the independent development label behind MLBClient, QuickClient and Operation Iron Veil, from Minecraft clients and launchers to a story-driven game.",
+    "vision": "Make software and games that feel finished: clear to use, honest about what they do, and built to last beyond a single release.",
+    "philosophy": [
+      { "title": "Ship real things", "text": "Features are announced when they work. Plans are labelled as plans." },
+      { "title": "Respect the player", "text": "No real-money shop: in MLBClient, cosmetics and emotes are unlocked with free daily credits." },
+      { "title": "Own the details", "text": "Every project gets its own identity, its own tools and the care to get small things right." }
+    ],
+    "goals": "",
+    "location": ""
+  },
+  "contact": {
+    "email": "",
+    "discordLabel": "MLBClient Community Discord",
+    "formEnabled": true,
+    "formIntro": "Questions, bug reports or business inquiries: send a message and it reaches the studio directly."
+  },
+  "social": [
+    { "label": "Discord", "url": "https://discord.gg/UrWXmaFQCE", "icon": "discord" },
+    { "label": "YouTube", "url": "", "icon": "youtube" },
+    { "label": "TikTok", "url": "", "icon": "tiktok" },
+    { "label": "CurseForge", "url": "https://www.curseforge.com/minecraft/mc-mods/quickclient", "icon": "curseforge" },
+    { "label": "GitHub", "url": "", "icon": "github" }
+  ],
+  "legal": {
+    "imprint": "",
+    "privacy": "This website does not use cookies, analytics or tracking. Fonts and images are served from this website. Embedded videos are only loaded from YouTube (youtube-nocookie.com) after you click play. Messages sent through the contact form are only used to answer you: depending on the host they are stored by Netlify or delivered to a private Discord channel. Please send no sensitive data.",
+    "disclaimer": "MLBClient and QuickClient are not official Minecraft products and are not approved by or associated with Mojang or Microsoft."
+  }
+}

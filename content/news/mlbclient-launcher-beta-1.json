@@ -1,0 +1,13 @@
+{
+  "slug": "mlbclient-launcher-beta-1",
+  "title": "MLBClient Launcher Beta 1 launches on 15 November",
+  "date": "2026-11-14",
+  "category": "Beta announcement",
+  "project": "mlbclient",
+  "cover": "/assets/img/mlbclient/poster.webp",
+  "coverAlt": "MLBClient Launcher Beta logo",
+  "excerpt": "The first public beta of the MLBClient Launcher arrives on Sunday, 15 November 2026 at 16:00 CET, together with MLBClient 0.1.0-beta and the free Launch Collection.",
+  "published": true,
+  "pinned": true,
+  "body": "The first public beta of the **MLBClient Launcher** arrives on **Sunday, 15 November 2026 at 16:00 CET**.\n\nMLBClient is a standalone launcher for Minecraft Java Edition. Log in with your Microsoft account, press Install, and the launcher sets up Minecraft, Fabric, Java and the MLBClient client for you.\n\n## What is in Beta 1\n\n- **Profiles** with their own folders for mods, configs and worlds\n- **Mods from Modrinth** and modpack import (Modrinth `.mrpack` and CurseForge Fabric packs)\n- **MLBClient 0.1.0-beta** for Minecraft 26.2 and 26.3, and QuickClient as a second client\n- **Emotes and cosmetics** that other MLBClient players can see\n- **Shop with daily credits**: unlock emotes and cosmetics, no real money\n\n## Launch Collection\n\nFour release emotes, *The Launch*, *MLB Hype*, *The Comeback* and *New Era*, are free for one week from the beta launch.\n\n## Good to know\n\nThis is a beta. The installer is not code-signed yet, so Windows SmartScreen may warn you (More info › Run anyway). Report bugs in the Discord.\n\n[Join the MLBClient Discord](https://discord.gg/UrWXmaFQCE) · [Watch the trailer](https://youtu.be/HVJCQes5Kx4)"
+}
