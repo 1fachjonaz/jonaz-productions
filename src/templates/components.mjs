@@ -39,11 +39,11 @@ export function picture(src, alt, { cls = "", sizes = "100vw", eager = false } =
 /** Visual for a project card: the cover image, or a themed tile with the logo when there is no cover. */
 export function projectMedia(p, { eager = false } = {}) {
   if (p.cover) return html`<div class="pmedia">${picture(p.cover, p.coverAlt || "", { sizes: "(min-width: 960px) 560px, 100vw", eager })}</div>`;
-  return html`<div class="pmedia pmedia-tile tile-${p.theme || "default"}">${p.logo ? html`<img src="${p.logo}" alt="" class="pmedia-logo" loading="lazy">` : html`<span>${p.name}</span>`}</div>`;
+  return html`<div class="pmedia pmedia-tile tile-${p.theme || "default"} tile-${p.slug}">${p.logo ? html`<img src="${p.logo}" alt="" class="pmedia-logo" loading="lazy">` : html`<span>${p.name}</span>`}</div>`;
 }
 
 export function projectCard(p, { large = false, eager = false } = {}) {
-  return html`<article class="pcard ${large ? "pcard-lg" : ""} pcard-${p.theme || "default"}" data-category="${p.category}" data-reveal>
+  return html`<article class="pcard ${large ? "pcard-lg" : ""} pcard-${p.theme || "default"} pcard-${p.slug}" data-category="${p.category}" data-reveal>
     <a class="pcard-link" href="/projects/${p.slug}/" aria-label="${p.name}: open project page"></a>
     ${projectMedia(p, { eager })}
     <div class="pcard-body">

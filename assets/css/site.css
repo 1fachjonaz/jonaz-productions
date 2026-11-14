@@ -240,11 +240,16 @@ button { font: inherit; color: inherit; }
 .pcard:hover .pmedia img:not(.pmedia-logo) { transform: scale(1.035); }
 .pmedia-tile { display: grid; place-items: center; }
 .pmedia-tile .pmedia-logo { width: 64%; max-width: 380px; height: auto; }
-.tile-default .pmedia-logo { width: 96px; image-rendering: pixelated; }
+.tile-default .pmedia-logo { width: 120px; }
+.tile-quickclient { background: radial-gradient(60% 80% at 50% 45%, rgba(77, 155, 255, .22), transparent 70%), linear-gradient(#111827, #0b0f18); }
+.tile-quickclient .pmedia-logo { filter: drop-shadow(0 0 24px rgba(120, 180, 255, .45)); }
+.pcard-default.pcard-quickclient, .project-quickclient { --accent: #6aaeff; --accent-2: #9cc8ff; --accent-ink: #06142b; --accent-soft: rgba(106, 174, 255, .12); }
+.project-quickclient .p-hero-bg { background: radial-gradient(55% 60% at 80% 20%, rgba(77, 155, 255, .16), transparent 70%); }
+.frame-tile .pmedia { aspect-ratio: 4 / 3; border-bottom: 0; }
+.frame-tile .pmedia-logo { width: 34%; max-width: 220px; }
 .pcard-body { display: flex; flex-direction: column; gap: 14px; padding: 22px 22px 24px; flex: 1; }
 .pcard-head { display: flex; align-items: center; gap: 14px; }
 .pcard-logo { width: 40px; height: 40px; object-fit: contain; padding: 6px; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; }
-.pcard-default .pcard-logo { image-rendering: pixelated; }
 .pcard-cat { font: 500 11.5px/1.2 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--dim); margin: 0 0 4px; }
 .pcard-title { font-size: 21px; font-weight: 700; font-stretch: 112%; }
 .pcard-text { color: var(--muted); font-size: 15px; }

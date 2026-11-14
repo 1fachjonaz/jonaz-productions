@@ -3,7 +3,7 @@ import { icon } from "./icons.mjs";
 import { page, absUrl } from "./layout.mjs";
 import { renderBlock } from "./blocks.mjs";
 import { renderMarkdown } from "../../shared/markdown.mjs";
-import { projectCard, newsCard, statusBadge, button, sectionHead, formatDate, picture, linkKindIcon, youtubeId } from "./components.mjs";
+import { projectCard, newsCard, statusBadge, button, sectionHead, formatDate, picture, linkKindIcon, youtubeId, projectMedia } from "./components.mjs";
 import { CATEGORIES } from "../../shared/schema.mjs";
 
 const crumbs = (ctx, items) => ({
@@ -148,7 +148,8 @@ function projectHero(p, ctx) {
           <div class="p-meta">${statusBadge(p.status)}${(p.tags || []).map((t) => html`<span class="tag">${t}</span>`)}</div>
           ${actions.length ? html`<div class="actions">${actions}</div>` : ""}
         </div>
-        ${p.cover ? html`<div class="p-hero-media"><div class="frame">${picture(p.cover, p.coverAlt, { sizes: "(min-width: 960px) 620px, 100vw", eager: true })}</div></div>` : ""}
+        ${p.cover ? html`<div class="p-hero-media"><div class="frame">${picture(p.cover, p.coverAlt, { sizes: "(min-width: 960px) 620px, 100vw", eager: true })}</div></div>`
+          : p.logo ? html`<div class="p-hero-media" aria-hidden="true"><div class="frame frame-tile">${projectMedia(p)}</div></div>` : ""}
       </div>
     </div>
   </section>`;
@@ -175,7 +176,7 @@ export function projectPage(p, ctx) {
   if (type === "SoftwareApplication") ld.applicationCategory = "GameApplication";
   return page(ctx, {
     title: p.seo?.title || p.name, description: p.seo?.description || p.summary, path: `/projects/${p.slug}/`,
-    active: "projects", body, theme: p.theme === "default" ? "" : p.theme, image: p.cover || "",
+    active: "projects", body, theme: p.theme === "default" ? "" : p.theme, image: p.cover || "", bodyClass: `project-${p.slug}`,
     jsonLd: [ld, crumbs(ctx, [{ name: "Home", path: "/" }, { name: "Projects", path: "/projects/" }, { name: p.name, path: `/projects/${p.slug}/` }])],
   });
 }

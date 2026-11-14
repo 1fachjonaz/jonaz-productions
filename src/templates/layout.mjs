@@ -95,7 +95,7 @@ function footer(ctx) {
 </footer>`;
 }
 
-export function page(ctx, { title, description, path, active = "", body, theme = "", image = "", type = "website", jsonLd = null, noindex = false }) {
+export function page(ctx, { title, description, path, active = "", body, theme = "", image = "", type = "website", jsonLd = null, noindex = false, bodyClass = "" }) {
   const { site } = ctx;
   const fullTitle = title ? `${title} | ${site.name}` : `${site.name} – ${site.hero.headline.replace(/\.$/, "")}`;
   const desc = description || site.description;
@@ -127,7 +127,7 @@ ${noindex ? '<meta name="robots" content="noindex">\n' : ""}<meta name="theme-co
 <link rel="alternate" type="application/rss+xml" title="${html`${site.name} News`}" href="/news/feed.xml">
 ${jsonLd ? `<script type="application/ld+json">${JSON.stringify(jsonLd).replace(/</g, "\\u003c")}</script>\n` : ""}<script src="/assets/js/site.js${v}" defer></script>
 </head>
-<body class="${theme ? `theme-${theme}` : "theme-studio"}">
+<body class="${theme ? `theme-${theme}` : "theme-studio"}${bodyClass ? ` ${bodyClass}` : ""}">
 <a class="skip-link" href="#main">Skip to content</a>
 ${header(ctx, active)}
 <main id="main" tabindex="-1">
