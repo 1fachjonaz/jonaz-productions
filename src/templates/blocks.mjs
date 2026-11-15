@@ -128,7 +128,7 @@ const R = {
     <ul class="checklist" role="list">${(b.items || []).map((s) => html`<li class="check check-${s.state}" data-reveal>
       <span class="check-mark" aria-hidden="true">${s.state === "done" ? icon("check", { size: 16 }) : ""}</span>
       <span>${s.label}</span>
-      <span class="check-state">${{ done: "Complete", spec: "Specified", progress: "In progress", open: "Not started" }[s.state] || s.state}</span>
+      <span class="check-state">${{ done: "Complete", spec: "Specified", progress: "In progress", open: "Not started", tba: "To be announced" }[s.state] || s.state}</span>
     </li>`)}</ul></div>`),
 
   news: (b, p, ctx) => {

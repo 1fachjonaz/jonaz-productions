@@ -11,7 +11,7 @@
   },
   "tagline": "The Big Comeback.",
   "summary": "A standalone Minecraft launcher with its own client: one-click installs, profiles, Modrinth mods, emotes, cosmetics and a free daily-credit shop.",
-  "description": "MLBClient is a standalone launcher for Minecraft Java Edition by Jonaz Productions. It installs Minecraft, Fabric, Java and the MLBClient client for you, keeps every profile separate and verifies every download. In game, MLBClient adds an emote wheel, cosmetics that other MLBClient players can see, and the full module set of its predecessor QuickClient.",
+  "description": "MLBClient is a standalone launcher for Minecraft Java Edition by MOONCREST GROUP. It installs Minecraft, Fabric, Java and the MLBClient client for you, keeps every profile separate and verifies every download. In game, MLBClient adds an emote wheel, cosmetics that other MLBClient players can see, and the full module set of its predecessor QuickClient.",
   "tags": [
     "Launcher",
     "Minecraft Java",
@@ -36,7 +36,7 @@
   ],
   "seo": {
     "title": "MLBClient – Minecraft Launcher (Beta)",
-    "description": "MLBClient is a standalone Minecraft launcher by Jonaz Productions: one-click installs, profiles, Modrinth mods, modpack import, emotes and cosmetics. Beta 1 launches on 15 November 2026."
+    "description": "MLBClient is a standalone Minecraft launcher by MOONCREST GROUP: one-click installs, profiles, Modrinth mods, modpack import, emotes and cosmetics. Beta 1 launches on 15 November 2026."
   },
   "hero": {
     "eyebrow": "Minecraft Launcher · Beta",

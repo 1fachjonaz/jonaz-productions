@@ -35,7 +35,8 @@ test("the real content of the repository is valid", async () => {
   const ctx = await loadContent();
   assert.deepEqual(ctx.errors, []);
   assert.ok(ctx.projects.some((p) => p.slug === "mlbclient"));
-  assert.ok(ctx.projects.some((p) => p.slug === "operation-iron-veil"));
+  assert.ok(ctx.projects.some((p) => p.slug === "city-life"));
+  assert.ok(!ctx.projects.some((p) => p.slug === "operation-iron-veil"));
 });
 
 test("no invented download links or release claims for unreleased versions", async () => {
@@ -46,6 +47,7 @@ test("no invented download links or release claims for unreleased versions", asy
   const upcoming = mlb.sections.find((s) => s.type === "upcoming");
   assert.match(upcoming.intro, /Nothing below is released/);
   assert.ok(!JSON.stringify(mlb).includes("HanamiClient"), "the possible rebranding must not be applied yet");
-  const oiv = ctx.projects.find((p) => p.slug === "operation-iron-veil");
-  assert.equal(oiv.sections.find((s) => s.type === "gallery").items.length, 0, "no invented screenshots");
+  const cl = ctx.projects.find((p) => p.slug === "city-life");
+  assert.equal(cl.sections.find((s) => s.type === "gallery").items.length, 0, "no invented screenshots");
+  assert.ok(!JSON.stringify(ctx).includes("GTA"), "no third-party game names");
 });

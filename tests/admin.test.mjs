@@ -75,7 +75,7 @@ test("projects: feature toggle, status change and reorder", async () => {
   const saved = JSON.parse(await readFile(path.join(dir, "content/projects/quickclient.json"), "utf8"));
   assert.equal(saved.featured, true);
   assert.equal(saved.status.stage, "legacy");
-  assert.equal((await call({ action: "save", kind: "order", data: { slugs: ["quickclient", "mlbclient", "operation-iron-veil"] } })).status, 200);
+  assert.equal((await call({ action: "save", kind: "order", data: { slugs: ["quickclient", "mlbclient", "city-life"] } })).status, 200);
   assert.equal(JSON.parse(await readFile(path.join(dir, "content/projects/quickclient.json"), "utf8")).order, 1);
   assert.equal((await call({ action: "save", kind: "order", data: { slugs: ["quickclient"] } })).status, 422);
 });

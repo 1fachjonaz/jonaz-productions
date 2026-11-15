@@ -1,4 +1,4 @@
-/* Jonaz Productions — small progressive enhancements. The site works without JavaScript. */
+/* MOONCREST GROUP — small progressive enhancements. The site works without JavaScript. */
 (() => {
   "use strict";
   const $ = (s, el = document) => el.querySelector(s);

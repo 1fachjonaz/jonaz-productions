@@ -48,7 +48,7 @@ function localStore(root) {
 
 function githubStore(repo, token, branch) {
   const api = `https://api.github.com/repos/${repo}`;
-  const headers = { authorization: `Bearer ${token}`, accept: "application/vnd.github+json", "user-agent": "jonaz-productions-admin", "x-github-api-version": "2022-11-28" };
+  const headers = { authorization: `Bearer ${token}`, accept: "application/vnd.github+json", "user-agent": "mooncrest-group-admin", "x-github-api-version": "2022-11-28" };
   const gh = async (url, init = {}) => {
     const res = await fetch(url.startsWith("http") ? url : api + url, { ...init, headers: { ...headers, ...(init.body ? { "content-type": "application/json" } : {}) } });
     if (!res.ok) {

@@ -16,6 +16,25 @@ const breadcrumb = (items) => html`<nav class="breadcrumb" aria-label="Breadcrum
   ${items.map((it, i) => i < items.length - 1 ? html`<li><a href="${it.path}">${it.name}</a></li>` : html`<li aria-current="page">${it.name}</li>`)}
 </ol></nav>`;
 
+/** Decorative city skyline for the City Life hero (deterministic, generated, not an in-game image). */
+function skyline() {
+  let seed = 7;
+  const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+  let x = 0, d = "M0 400", windows = "";
+  while (x < 1600) {
+    const w = 18 + Math.floor(rnd() * 46);
+    const center = 1 - Math.abs(x - 860) / 900;
+    const h = 40 + Math.floor(rnd() * 120 + center * center * 190 + (rnd() > 0.93 ? 120 : 0));
+    d += ` L${x} ${400 - h} L${x + w} ${400 - h}`;
+    for (let wy = 400 - h + 10; wy < 392; wy += 14) {
+      for (let wx = x + 5; wx < x + w - 5; wx += 9) if (rnd() > 0.86) windows += `<rect x="${wx}" y="${wy}" width="3" height="5"/>`;
+    }
+    x += w + (rnd() > 0.7 ? 4 : 0);
+  }
+  d += " L1600 400 Z";
+  return `<svg class="cl-skyline" viewBox="0 0 1600 400" preserveAspectRatio="xMidYMax slice"><path d="${d}"/><g class="cl-windows">${windows}</g></svg>`;
+}
+
 /* ------------------------------------------------------------------ home */
 export function homePage(ctx) {
   const { site } = ctx;
@@ -28,7 +47,7 @@ export function homePage(ctx) {
   <div class="hero-bg" aria-hidden="true"><div class="hero-grid"></div><div class="hero-glow"></div><img class="hero-mark" src="/assets/img/brand/mark-outline.svg" alt=""></div>
   <div class="container hero-inner">
     <div class="hero-copy">
-      <img class="hero-logo" src="/assets/img/brand/mark.svg" alt="Jonaz Productions" width="48" height="56">
+      <img class="hero-logo" src="/assets/img/brand/mark.svg" alt="MOONCREST GROUP" width="48" height="56">
       <p class="eyebrow">${site.hero.eyebrow}</p>
       <h1 class="display">${h1a} <span class="accent">${h1b.join(" ")}</span></h1>
       <p class="lead">${site.hero.text}</p>
@@ -65,7 +84,7 @@ export function homePage(ctx) {
     <div>${sectionHead({ eyebrow: "About the studio", title: "Independent by design.", id: "about" })}
       <p class="lead">${site.about.intro}</p>
       <p>${site.about.vision}</p>
-      ${button("/about/", "About Jonaz Productions", { kind: "ghost", iconName: "arrow" })}
+      ${button("/about/", "About MOONCREST GROUP", { kind: "ghost", iconName: "arrow" })}
     </div>
     <ol class="principles" role="list">${(site.about.philosophy || []).map((x, i) => html`<li data-reveal><span>${String(i + 1).padStart(2, "0")}</span><div><h3>${x.title}</h3><p>${x.text}</p></div></li>`)}</ol>
   </div>
@@ -91,7 +110,7 @@ export function projectsPage(ctx) {
   const cats = CATEGORIES.filter((c) => ctx.projects.some((p) => p.category === c));
   const body = html`
 <section class="page-head"><div class="container">
-  ${sectionHead({ eyebrow: "Projects", title: "Everything we're building.", intro: "Software, Minecraft projects and games by Jonaz Productions. Each status shows exactly where a project stands.", level: 1 })}
+  ${sectionHead({ eyebrow: "Projects", title: "Everything we're building.", intro: "Software, Minecraft projects and games by MOONCREST GROUP. Each status shows exactly where a project stands.", level: 1 })}
   ${cats.length > 1 ? html`<div class="filters" role="group" aria-label="Filter projects by category" data-filter="projects">
     <button type="button" class="chip" aria-pressed="true" data-value="all">All</button>
     ${cats.map((c) => html`<button type="button" class="chip" aria-pressed="false" data-value="${c}">${c}</button>`)}
@@ -101,7 +120,7 @@ export function projectsPage(ctx) {
   <div class="projects-grid" data-filter-list="projects">${ctx.projects.map((p) => projectCard(p))}</div>
   <p class="filter-empty" data-filter-empty="projects" hidden>No projects in this category yet.</p>
 </div></section>`;
-  return page(ctx, { title: "Projects", description: "All projects by Jonaz Productions: MLBClient, Operation Iron Veil, QuickClient and what comes next.", path: "/projects/", active: "projects", body, jsonLd: crumbs(ctx, [{ name: "Home", path: "/" }, { name: "Projects", path: "/projects/" }]) });
+  return page(ctx, { title: "Projects", description: "All projects by MOONCREST GROUP: MLBClient, PROJECT: CITY LIFE, QuickClient and what comes next.", path: "/projects/", active: "projects", body, jsonLd: crumbs(ctx, [{ name: "Home", path: "/" }, { name: "Projects", path: "/projects/" }]) });
 }
 
 function projectHero(p, ctx) {
@@ -116,21 +135,20 @@ function projectHero(p, ctx) {
   links.forEach((l) => actions.push(button(l.url, l.label, { kind: actions.length ? "ghost" : "primary", iconName: linkKindIcon(l.kind) })));
   actions.splice(3);
 
-  if (p.theme === "ironveil") {
-    return html`<section class="iv-hero">
-      <div class="iv-hero-bg" aria-hidden="true">
-        <div class="iv-sky"></div><div class="iv-beam iv-beam-1"></div><div class="iv-beam iv-beam-2"></div>
-        <svg class="iv-signal" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0 60 H380 l18-34 22 70 20-52 16 30 14-14 H1200"/></svg>
-        <div class="iv-embers">${raw("<i></i>".repeat(14))}</div>
-        <div class="iv-grain"></div>
+  if (p.theme === "citylife") {
+    return html`<section class="cl-hero">
+      <div class="cl-hero-bg" aria-hidden="true">
+        <div class="cl-sky"></div><div class="cl-sun"></div>
+        ${raw(skyline())}
+        <div class="cl-sea"><i></i><i></i><i></i><i></i><i></i><i></i></div>
       </div>
-      <div class="container iv-hero-inner">
+      <div class="container cl-hero-inner">
         ${breadcrumb([{ name: "Home", path: "/" }, { name: "Projects", path: "/projects/" }, { name: p.name }])}
-        <p class="iv-eyebrow">${p.hero?.eyebrow || p.category}</p>
-        <h1 class="iv-title"><img src="${p.logo}" alt="${p.name}" width="694" height="180"></h1>
-        ${p.hero?.quote ? html`<p class="iv-quote">“${p.hero.quote}”</p>` : ""}
-        <p class="iv-lead">${p.summary}</p>
-        <div class="iv-meta">${statusBadge(p.status)}${(p.tags || []).map((t) => html`<span class="tag">${t}</span>`)}</div>
+        <p class="cl-eyebrow">${p.hero?.eyebrow || p.category}</p>
+        <h1 class="cl-title"><img src="${p.logo}" alt="${p.hero?.headline || p.name}" width="572" height="190"></h1>
+        ${p.tagline ? html`<p class="cl-tagline">${p.tagline}</p>` : ""}
+        <p class="cl-lead">${p.summary}</p>
+        <div class="cl-meta">${statusBadge(p.status)}${(p.tags || []).map((t) => html`<span class="tag">${t}</span>`)}</div>
         ${actions.length ? html`<div class="actions">${actions}</div>` : ""}
       </div>
     </section>`;
@@ -200,7 +218,7 @@ export function newsIndexPage(ctx) {
   </div><p class="filter-empty" data-filter-empty="news" hidden>No articles in this category yet.</p>` : html`<div class="empty-state"><p>No news yet.</p></div>`}
   <p class="rss"><a href="/news/feed.xml">${icon("news", { size: 16 })} RSS feed</a></p>
 </div></section>`;
-  return page(ctx, { title: "News", description: "News and announcements from Jonaz Productions: development updates, releases, betas and changelogs.", path: "/news/", active: "news", body, jsonLd: crumbs(ctx, [{ name: "Home", path: "/" }, { name: "News", path: "/news/" }]) });
+  return page(ctx, { title: "News", description: "News and announcements from MOONCREST GROUP: development updates, releases, betas and changelogs.", path: "/news/", active: "news", body, jsonLd: crumbs(ctx, [{ name: "Home", path: "/" }, { name: "News", path: "/news/" }]) });
 }
 
 export function articlePage(n, ctx) {
@@ -242,7 +260,7 @@ export function aboutPage(ctx) {
   const discord = (site.social || []).find((s) => s.icon === "discord" && s.url);
   const body = html`
 <section class="page-head"><div class="container">
-  ${sectionHead({ eyebrow: "About", title: "About Jonaz Productions", level: 1 })}
+  ${sectionHead({ eyebrow: "About", title: "About MOONCREST GROUP", level: 1 })}
   <p class="lead lead-xl">${a.intro}</p>
 </div></section>
 <section class="block block-tight"><div class="container about-split">
@@ -260,7 +278,7 @@ ${a.goals ? html`<section class="block"><div class="container container-narrow">
   <div><h2 class="section-title">Get in touch.</h2><p>${site.contact?.email ? html`Write to <a href="mailto:${site.contact.email}">${site.contact.email}</a> or use the contact form.` : "Use the contact form or join the community on Discord."}</p></div>
   <div class="cta-actions">${button("/contact/", "Contact", { iconName: "mail" })}${discord ? button(discord.url, "Discord", { kind: "ghost", iconName: "discord" }) : ""}</div>
 </div></div></section>`;
-  return page(ctx, { title: "About", description: "About Jonaz Productions: the studio, its vision, development philosophy and projects.", path: "/about/", active: "about", body, jsonLd: crumbs(ctx, [{ name: "Home", path: "/" }, { name: "About", path: "/about/" }]) });
+  return page(ctx, { title: "About", description: "About MOONCREST GROUP: the studio, its vision, development philosophy and projects.", path: "/about/", active: "about", body, jsonLd: crumbs(ctx, [{ name: "Home", path: "/" }, { name: "About", path: "/about/" }]) });
 }
 
 /* ------------------------------------------------------------------ contact */
@@ -291,7 +309,7 @@ export function contactPage(ctx) {
     ${social.length ? html`<div class="contact-box"><h2 class="footer-title">Community & social</h2><ul role="list" class="contact-links">${social.map((s) => html`<li><a href="${s.url}" target="_blank" rel="noopener noreferrer">${icon(s.icon || "globe", { size: 18 })}<span>${s.icon === "discord" && site.contact?.discordLabel ? site.contact.discordLabel : s.label}</span>${icon("external", { size: 14 })}</a></li>`)}</ul></div>` : ""}
   </aside>
 </div></section>`;
-  return page(ctx, { title: "Contact", description: "Contact Jonaz Productions: contact form, Discord community and social links.", path: "/contact/", active: "contact", body });
+  return page(ctx, { title: "Contact", description: "Contact MOONCREST GROUP: contact form, Discord community and social links.", path: "/contact/", active: "contact", body });
 }
 
 export function thanksPage(ctx) {
@@ -312,7 +330,7 @@ export function legalPage(ctx) {
     <h2 id="privacy">Privacy</h2>${raw(renderMarkdown(l.privacy || ""))}
     ${l.disclaimer ? html`<h2 id="disclaimer">Disclaimer</h2><p>${l.disclaimer}</p>` : ""}
   </div></section>`;
-  return page(ctx, { title: "Privacy & legal", description: "Privacy information and legal notes for the Jonaz Productions website.", path: "/legal/", body });
+  return page(ctx, { title: "Privacy & legal", description: "Privacy information and legal notes for the MOONCREST GROUP website.", path: "/legal/", body });
 }
 
 export function notFoundPage(ctx) {

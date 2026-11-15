@@ -1,0 +1,115 @@
+{
+  "slug": "city-life",
+  "name": "City Life",
+  "category": "Games",
+  "theme": "citylife",
+  "featured": true,
+  "order": 2,
+  "status": {
+    "stage": "in-development",
+    "label": "Early development"
+  },
+  "tagline": "Welcome to San Cordova.",
+  "summary": "A free open-world game set in San Cordova, a fictional sun-soaked coastal city inspired by Miami. Built from scratch in Unreal Engine 5.8.",
+  "description": "PROJECT: CITY LIFE is an open-world game by MOONCREST GROUP. It takes place in San Cordova, a fictional coastal city in the spirit of Miami and South Florida, with its own streets and buildings. The game is being built from scratch in Unreal Engine 5.8 and is planned to be free to play.",
+  "tags": [
+    "Open world",
+    "Free to play",
+    "Unreal Engine 5.8"
+  ],
+  "logo": "/assets/img/citylife/wordmark.svg",
+  "icon": "/assets/img/citylife/icon.svg",
+  "cover": "",
+  "coverAlt": "",
+  "links": [],
+  "seo": {
+    "title": "PROJECT: CITY LIFE – Free open-world game",
+    "description": "PROJECT: CITY LIFE is a free open-world game by MOONCREST GROUP, set in San Cordova, a fictional coastal city inspired by Miami. In development in Unreal Engine 5.8."
+  },
+  "hero": {
+    "eyebrow": "A MOONCREST GROUP game",
+    "headline": "PROJECT: CITY LIFE"
+  },
+  "sections": [
+    {
+      "type": "story",
+      "id": "san-cordova",
+      "eyebrow": "The city",
+      "title": "San Cordova.",
+      "body": "San Cordova is the fictional coastal city at the heart of PROJECT: CITY LIFE, inspired by Miami and South Florida.\n\nIt is meant to feel instantly recognisable as Miami, but it is not a copy: its streets, buildings and layout are designed freely for the game.\n\nMore about the city and what you will do there will be revealed as development continues."
+    },
+    {
+      "type": "facts",
+      "id": "facts",
+      "title": "At a glance",
+      "items": [
+        {
+          "label": "Genre",
+          "value": "Open-world game"
+        },
+        {
+          "label": "Setting",
+          "value": "San Cordova, a fictional city inspired by Miami"
+        },
+        {
+          "label": "Engine",
+          "value": "Unreal Engine 5.8"
+        },
+        {
+          "label": "Price",
+          "value": "Free (planned)"
+        },
+        {
+          "label": "Platforms",
+          "value": "Not announced"
+        },
+        {
+          "label": "Release",
+          "value": "Not announced"
+        }
+      ]
+    },
+    {
+      "type": "status",
+      "id": "status",
+      "eyebrow": "Development status",
+      "title": "Early days.",
+      "intro": "City Life is in early development as a completely new project. Features, platforms and a release window will be announced when they are ready.",
+      "items": [
+        {
+          "state": "done",
+          "label": "Setting: San Cordova, inspired by Miami"
+        },
+        {
+          "state": "done",
+          "label": "New Unreal Engine 5.8 project, built from scratch"
+        },
+        {
+          "state": "tba",
+          "label": "Gameplay, story and characters"
+        }
+      ]
+    },
+    {
+      "type": "gallery",
+      "id": "media",
+      "eyebrow": "Media",
+      "title": "Screenshots & trailers",
+      "items": [],
+      "emptyText": "No screenshots or trailers have been released yet. The first look at San Cordova will appear here."
+    },
+    {
+      "type": "news",
+      "id": "updates",
+      "title": "Development updates",
+      "limit": 4,
+      "emptyText": "The first development update is still to come."
+    },
+    {
+      "type": "placeholder",
+      "id": "announcements",
+      "title": "Future announcements",
+      "text": "Gameplay, platforms and the release window will be announced here."
+    }
+  ]
+}

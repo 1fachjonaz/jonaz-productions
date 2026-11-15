@@ -34,9 +34,9 @@ function projectMenu(ctx) {
 function header(ctx, active) {
   return html`<header class="site-header" data-header>
   <div class="container header-inner">
-    <a class="brand" href="/" aria-label="Jonaz Productions, home">
+    <a class="brand" href="/" aria-label="MOONCREST GROUP, home">
       <img src="/assets/img/brand/mark.svg" alt="" width="26" height="30">
-      <span class="brand-word"><span>JONAZ</span> <span class="brand-sub">PRODUCTIONS</span></span>
+      <span class="brand-word"><span>MOONCREST</span> <span class="brand-sub">GROUP</span></span>
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
       <span class="sr-only">Menu</span>${icon("menu", { cls: "i-open" })}${icon("close", { cls: "i-close" })}
@@ -65,7 +65,7 @@ function footer(ctx) {
   return html`<footer class="site-footer">
   <div class="container footer-grid">
     <div class="footer-brand">
-      <a class="brand" href="/"><img src="/assets/img/brand/mark.svg" alt="" width="26" height="30"><span class="brand-word"><span>JONAZ</span> <span class="brand-sub">PRODUCTIONS</span></span></a>
+      <a class="brand" href="/"><img src="/assets/img/brand/mark.svg" alt="" width="26" height="30"><span class="brand-word"><span>MOONCREST</span> <span class="brand-sub">GROUP</span></span></a>
       <p>${site.description}</p>
       ${social.length ? html`<ul class="social" role="list">${social.map((s) => html`<li><a href="${s.url}" target="_blank" rel="noopener noreferrer">${icon(s.icon || "globe", { label: s.label })}</a></li>`)}</ul>` : ""}
     </div>
@@ -89,7 +89,7 @@ function footer(ctx) {
     </div>
   </div>
   <div class="container footer-bottom">
-    <span>© ${year} Jonaz Productions. All rights reserved.</span>
+    <span>© ${year} MOONCREST GROUP. All rights reserved.</span>
     ${site.legal?.disclaimer ? html`<span>${site.legal.disclaimer}</span>` : ""}
   </div>
 </footer>`;
@@ -110,7 +110,7 @@ export function page(ctx, { title, description, path, active = "", body, theme =
 <title>${html`${fullTitle}`}</title>
 <meta name="description" content="${html`${desc}`}">
 <link rel="canonical" href="${html`${url}`}">
-${noindex ? '<meta name="robots" content="noindex">\n' : ""}<meta name="theme-color" content="${theme === "mlbclient" ? "#120b10" : theme === "ironveil" ? "#0d0b09" : "#0b0c0e"}">
+${noindex ? '<meta name="robots" content="noindex">\n' : ""}<meta name="theme-color" content="${theme === "mlbclient" ? "#120b10" : theme === "citylife" ? "#0c0a14" : "#0b0c0e"}">
 <meta property="og:type" content="${type}">
 <meta property="og:site_name" content="${html`${site.name}`}">
 <meta property="og:title" content="${html`${title || site.name}`}">

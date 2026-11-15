@@ -100,7 +100,7 @@ for (const dir of ["content", "assets", "src", "shared", "admin", "quickclient"]
   if (existsSync(path.join(ROOT, dir))) watch(path.join(ROOT, dir), { recursive: true }, rebuildSoon).on("error", () => {});
 }
 server.listen(PORT, () => {
-  console.log(`\n  Jonaz Productions dev server: http://localhost:${PORT}`);
+  console.log(`\n  MOONCREST GROUP dev server: http://localhost:${PORT}`);
   console.log(`  Admin: http://localhost:${PORT}/admin/  (password: ${process.env.ADMIN_PASSWORD === "local-admin-password" ? "local-admin-password" : "from ADMIN_PASSWORD"})`);
   console.log("  Admin saves write directly into this folder.\n");
 });

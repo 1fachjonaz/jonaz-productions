@@ -1,6 +1,6 @@
-# Jonaz Productions – Website
+# MOONCREST GROUP – Website
 
-Offizielle Website von Jonaz Productions mit den Projektseiten **MLBClient**, **Operation Iron Veil** und **QuickClient**,
+Offizielle Website von MOONCREST GROUP (vorher MOONCREST GROUP) mit den Projektseiten **MLBClient**, **PROJECT: CITY LIFE** und **QuickClient**,
 News-System, Kontaktformular und passwortgeschütztem Admin-Bereich.
 
 - **Technik:** statische Seiten, erzeugt von einem kleinen Node-Build (`build/build.mjs`) aus JSON-Inhalten.
@@ -20,11 +20,11 @@ News-System, Kontaktformular und passwortgeschütztem Admin-Bereich.
 | `content/news/*.json` | ein News-Artikel pro Datei (Markdown-Text) |
 | `quickclient/news.json` | In-Game-News der Mods (Format unverändert) |
 | `src/templates/` | HTML-Vorlagen (Layout, Seiten, Abschnitte, Icons) |
-| `assets/css/site.css` | gesamtes Design: Studio-Look + eigene Themes für MLBClient und Operation Iron Veil |
+| `assets/css/site.css` | gesamtes Design: Studio-Look + eigene Themes für MLBClient und City Life |
 | `assets/js/site.js` | Menü, Filter, Galerie, Countdown, Video, Kontaktformular (Seite funktioniert auch ohne JS) |
 | `assets/img/` | Logos und optimierte Bilder (WebP), `assets/uploads/` = Uploads aus dem Admin |
-| `assets/img/brand/` | Jonaz-Productions-Logo: Zeichen, Schriftzug, App-Icon, Favicons |
-| `assets/fonts/` | selbst gehostete Schriften (Archivo, JetBrains Mono, Cormorant Garamond – SIL OFL) |
+| `assets/img/brand/` | MOONCREST-GROUP-Logo: Wappen mit Halbmond, Schriftzug, App-Icon, Favicons |
+| `assets/fonts/` | selbst gehostete Schriften (Archivo, JetBrains Mono – SIL OFL) |
 | `admin/` | Admin-Oberfläche |
 | `netlify/functions/admin.mjs` | Admin-API (Login, Speichern, Löschen) |
 | `netlify/functions/news.mjs` | bestehender `/qcnews`-Endpunkt (unverändert) |
@@ -134,7 +134,7 @@ Sitzungen ungültig.
 Im Admin *Projects › + New project* – oder eine Datei `content/projects/<slug>.json` anlegen (Vorlage: eine der
 vorhandenen Dateien). Die Projektseite, die Projektübersicht, das Menü, der Footer und die Sitemap werden
 automatisch erzeugt. Kategorien: `Software`, `Minecraft`, `Games`, `Experimental`. Status: `released`, `beta`,
-`in-development`, `pre-production`, `planned`, `legacy`. Design: `default`, `mlbclient`, `ironveil`.
+`in-development`, `pre-production`, `planned`, `legacy`. Design: `default`, `mlbclient`, `citylife`.
 
 **Abschnittstypen** für `sections`: `text`, `story`, `features`, `facts`, `gallery`, `video` (YouTube),
 `release` (Downloads + Countdown), `changelog`, `upcoming` (geplante Features), `characters`, `timeline`,
@@ -149,9 +149,9 @@ Füllen), `cta`, `quote`.
   (Download-Buttons erscheinen automatisch, sobald Zeitpunkt erreicht **und** ein Link eingetragen ist),
   interaktive Feature-Vorschau, In-Game-Features, Trailer (datenschutzfreundlich erst nach Klick), Screenshots mit
   Lightbox, Changelog und Release-Historie, Beta-2-Vorschau klar als „geplant" markiert, Projekt-News, Discord
-- **Operation Iron Veil:** eigene cinematic Identität (warmes Schwarz/Messing, Serif-Titel, Filmkorn,
-  Suchscheinwerfer, Funksignal, Glut), Entwicklungsstatus als ehrliche Checkliste, Story ohne Spoiler zum Ende,
-  Figuren, 12 Kapitel, Gameplay „as designed", Eckdaten, leere Medien-/Update-Bereiche zum späteren Füllen
+- **PROJECT: CITY LIFE:** eigene Identität (Sonnenuntergang über einer generierten Skyline am Meer, Koralle/Türkis,
+  schmale fette Schrift), Eckdaten (San Cordova, Unreal Engine 5.8, kostenlos geplant), Entwicklungsstatus, leere
+  Medien-/Update-Bereiche zum späteren Füllen
 - QuickClient-Seite (Vorgänger, CurseForge-Link, In-Game-News)
 - News-System mit Übersicht, Kategoriefilter, Artikelseiten, Vor/Zurück, RSS-Feed
 - About-, Kontakt- (mit funktionierendem Formular), Rechtliches- und 404-Seite
@@ -172,8 +172,8 @@ Füllen), `cta`, `quote`.
   vor. Leere Links werden nicht angezeigt; im Admin ergänzen.
 - **MLBClient-Screenshots stammen aus dem offiziellen Trailer** (echte Launcher-Oberfläche, teilweise mit
   Trailer-Texten). Echte Screenshots können im Admin ersetzt werden.
-- **Operation Iron Veil hat noch keine Bilder.** Logo und Emblem sind typografisch neu gestaltet; es wurden keine
-  Screenshots oder Szenen erfunden.
+- **City Life hat noch keine Bilder.** Schriftzug und Icon sind typografisch gestaltet, die Skyline im Hero ist
+  eine Illustration (kein Spielbild). Es wurden keine Screenshots, Features oder Termine erfunden.
 - Die **Zukunftsziele** auf der About-Seite sind leer und daher ausgeblendet.
 - Der Admin ist für **eine Person** gedacht (ein Passwort, keine Benutzerrollen). Gleichzeitiges Bearbeiten
   derselben Datei: die letzte Speicherung gewinnt.

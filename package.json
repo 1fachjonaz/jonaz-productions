@@ -1,8 +1,8 @@
 {
-  "name": "jonaz-productions-website",
+  "name": "mooncrest-group-website",
   "version": "2.0.0",
   "private": true,
-  "description": "Official website of Jonaz Productions: static site generator, admin and Netlify functions. No runtime dependencies.",
+  "description": "Official website of MOONCREST GROUP: static site generator, admin and Netlify functions. No runtime dependencies.",
   "type": "module",
   "engines": { "node": ">=20" },
   "scripts": {

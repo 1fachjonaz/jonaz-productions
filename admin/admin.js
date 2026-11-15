@@ -1,4 +1,4 @@
-// Jonaz Productions admin. Talks only to /api/admin; no secret is stored in this file.
+// MOONCREST GROUP admin. Talks only to /api/admin; no secret is stored in this file.
 // The session token lives in sessionStorage (cleared when the tab closes) and expires after 8 hours.
 import { renderMarkdown } from "./markdown.mjs";
 import { validateNews, validateProject, validateSite, CATEGORIES, STAGES, STAGE_LABELS, THEMES, NEWS_CATEGORIES, SLUG_RE } from "./schema.mjs";
@@ -202,7 +202,7 @@ async function renderLogin(message = "") {
     },
   },
   h("h1", {}, h("img", { src: "/assets/img/brand/mark.svg", alt: "" }), "Admin"),
-  h("p", {}, "Jonaz Productions content manager"),
+  h("p", {}, "MOONCREST GROUP content manager"),
   status && !status.configured ? h("p", { class: "note warn" }, "The admin is not set up on the server yet. Set ADMIN_PASSWORD, GITHUB_TOKEN and GITHUB_REPO in Netlify (see README).") : "",
   field("Password", pw), err, btn)));
   pw.focus();
@@ -392,7 +392,7 @@ function projectEditor(original, working) {
         field("URL slug", slugInput, "/projects/<slug>/")),
       h("div", { class: "grid3" },
         field("Category", select(p, "category", CATEGORIES)),
-        field("Page design", select(p, "theme", THEMES.map((t) => [t, { default: "Studio (default)", mlbclient: "MLBClient", ironveil: "Operation Iron Veil" }[t]]))),
+        field("Page design", select(p, "theme", THEMES.map((t) => [t, { default: "Studio (default)", mlbclient: "MLBClient", citylife: "City Life" }[t]]))),
         field("Order", h("input", { type: "number", value: p.order, min: 1, oninput: (e) => (p.order = Number(e.target.value)) }))),
       checkbox(p, "featured", "Featured on the home page")),
     h("fieldset", {}, h("legend", {}, "Status"),

@@ -11,7 +11,7 @@ export const STAGE_LABELS = {
   planned: "Planned",
   legacy: "Legacy",
 };
-export const THEMES = ["default", "mlbclient", "ironveil"];
+export const THEMES = ["default", "mlbclient", "citylife"];
 export const NEWS_CATEGORIES = [
   "Development update",
   "New release",

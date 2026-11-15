@@ -1,4 +1,4 @@
-# Jonaz Productions website on Netlify.
+# MOONCREST GROUP website on Netlify.
 # The build turns content/*.json into static pages (dist/). Admin saves and /qcnews commit to GitHub,
 # which triggers a new build automatically.
 [build]

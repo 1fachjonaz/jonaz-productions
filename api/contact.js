@@ -34,7 +34,7 @@ export async function POST(request) {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({
-      username: "Jonaz Productions Website",
+      username: "MOONCREST GROUP Website",
       allowed_mentions: { parse: [] },
       embeds: [{
         title: `Contact: ${topic}`,
